@@ -3,10 +3,10 @@ pygame.init()
 pygame.display.set_caption('TRON')
 
 #VARIABLES 
-WIDTH = 1001
-HEIGHT = 601
-BORDER = 591
-VELOCITY = 1
+WIDTH = 1000
+HEIGHT = 600
+BORDER = 590
+VELOCITY = 0.3
 
 class player: #no clue what im doing
     PLAYER = 4
@@ -24,11 +24,19 @@ class player: #no clue what im doing
         pygame.draw.rect(screen, color, pygame.Rect(self.x,self.y, player.PLAYER, player.PLAYER))
     
 
-    def update(self, direction, color ):
-        global bgColor
-        self.x = self.x + self.vx
-        self.y = self.y + self.vy
-        self.show()  
+    def update(self):
+        global bgColor, VELOCITY
+
+        nextX = self.x + self.vx
+        nextY = self.y + self.vy
+        
+
+        self.show(bgColor)
+        self.x = nextX
+        self.y = nextY
+        self.show(self.playerColor)
+
+        
         
 
     def move(self,direction):
@@ -38,7 +46,7 @@ class player: #no clue what im doing
         #else:
             #self.x += self.direction[0] * 2
             #self.y += self.direction[1] * 2
-
+        
         print("keys")
         if direction == pygame.K_LEFT:
             self.vx = - VELOCITY
@@ -47,7 +55,7 @@ class player: #no clue what im doing
             self.vx = VELOCITY
             self.vy = 0
         elif direction == pygame.K_UP:
-            self.vx = 0 
+            self.vx = 0
             self.vy = - VELOCITY
         elif direction == pygame.K_DOWN:
             self.vx = 0
@@ -75,7 +83,7 @@ print('player')
 running = True
 while running:
     pygame.display.flip()
-    player1.update(event.key)
+    player1.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False

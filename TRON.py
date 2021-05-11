@@ -40,12 +40,6 @@ class player: #no clue what im doing
         
 
     def move(self,direction):
-        #if self.x <=0:
-            #self.x += self.direction[0]
-            #self.y += self.direction[1]
-        #else:
-            #self.x += self.direction[0] * 2
-            #self.y += self.direction[1] * 2
         
         print("keys")
         if direction == pygame.K_LEFT:

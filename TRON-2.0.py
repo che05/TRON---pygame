@@ -7,6 +7,7 @@ WIDTH = 600
 HEIGHT = 500
 BORDER = 580
 VELOCITY = 1
+gameStatus = True
 
 
 class player: #no clue what im doing
@@ -20,6 +21,7 @@ class player: #no clue what im doing
         self.playerColor = color
         self.controls = controls
         self.tail = tail
+        
 
     def show(self, color):
         global screen
@@ -35,17 +37,20 @@ class player: #no clue what im doing
 
         if (nextX, nextY) in self.tail:
             print(self.name + " stop hitting yourself.")
-            running == False
+            screen.fill("black")
+            pygame.display.set_caption(self.name + ' crashed')
         elif (nextX, nextY) in opponentTail:
             print(" stop hitting your opponent!")
-            running == False
-        if nextX < 10 or nextX > WIDTH - 10
+            screen.fill("black")
+            pygame.display.set_caption(self.name + ' crashed')
+        if nextX < 10 or nextX > WIDTH - 10:
             print(self.name + " hit the left or right wall.")
             screen.fill("black")
-            
+            pygame.display.set_caption(self.name + ' crashed')
         if nextY < 10 or nextY > HEIGHT - 10:
             print(self.name + " hit the top or bottom wall.")
-            
+            screen.fill("black")
+            pygame.display.set_caption(self.name + ' crashed')
                
         #self.show(bgColor)
         self.x = nextX
@@ -93,8 +98,6 @@ print('player1')
 player2.show(pygame.Color('red'))
 print('player2')
 
-display_surface = pygame.display.set_mode((200, 40))
-textRect.center = (WIDTH // 2, HEIGHT // 2)
 
 running = True
 while running:
